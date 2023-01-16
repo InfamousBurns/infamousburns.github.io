@@ -1,24 +1,3 @@
-$(document).ready(function() {
-	
-	// If the comparison slider is present on the page lets initialise it, this is good you will include this in the main js to prevent the code from running when not needed
-	if ($(".comparison-slider")[0]) {
-		let compSlider = $(".comparison-slider");
-	
-		//let's loop through the sliders and initialise each of them
-		compSlider.each(function() {
-			let compSliderWidth = $(this).width() + "px";
-			$(this).find(".resize img").css({ width: compSliderWidth });
-			drags($(this).find(".divider"), $(this).find(".resize"), $(this));
-		});
-
-		//if the user resizes the windows lets update our variables and resize our images
-		$(window).on("resize", function() {
-			let compSliderWidth = compSlider.width() + "px";
-			compSlider.find(".resize img").css({ width: compSliderWidth });
-		});
-	}
-});
-
 // This is where all the magic happens
 // This is a modified version of the pen from Ege Görgülü - https://codepen.io/bamf/pen/jEpxOX - and you should check it out too.
 function drags(dragElement, resizeElement, container) {
