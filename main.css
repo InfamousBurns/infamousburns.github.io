@@ -59,7 +59,7 @@ header h1 {
 .cd-image-container {
   position: relative;
   width: 90%;
-  max-width: 90%;
+  max-width: 70%;
   margin: 0em auto;
 }
 .cd-image-container img {
