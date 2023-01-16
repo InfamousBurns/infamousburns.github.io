@@ -1,226 +1,215 @@
-$maxWidth: 960px;
-$minTablet: 767px;
+/* -------------------------------- 
 
-@mixin media($size) {
-	@if $size == 'tabletUpwards' {@media screen and ( min-width : $minTablet ) { @content; }}
+Primary style
+
+-------------------------------- */
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-	position: relative;
-	background-color: #DDDDDD;
-	font-family: 'helvetica', sans-serif;
-	font-weight: lighter;
-	font-size: 14px;
-	color: #555;
-	margin: 0;
-	padding: 0;
-	min-width: 320px;
-}
-
-h1 {
-	text-transform: uppercase;
-	color: #333;
-}
-
-h3 {
-	font-weight: lighter;
-	color: #555555;
+  font-size: 100%;
+  font-family: "Roboto Slab", sans-serif;
+  color: #445b7c;
+  background-color: #363636;
+  padding: 1rem .5rem;
 }
 
 a {
-	position: relative;
-	color: #a8244f;
-	text-decoration: none;
-	&:before {
-		content: "";
-		height: 2px;
-		position: absolute;
-		bottom: -5px;
-		left: 0;
-		right: 0;
-		background-color: darken(#a8244f, 10%);
-		transform: rotateY(90deg);
-		transition: transform 0.2s ease-in-out;
-	}
-	&:hover {
-		color: darken(#a8244f, 10%);
-		text-decoration: none;
-		&:before {
-			transform: rotateY(0deg);
-		}
-	}
+  color: #dc717d;
+  text-decoration: none;
 }
 
-.split {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: strech;
-	p {
-		flex-basis: 100%;
-		@include media('tabletUpwards') {
-			flex-basis: 48%;
-		}
-	}
+img {
+  max-width: 100%;
 }
 
-nav.social {
-	display: inline-block;
-	padding: 0;
-	margin-bottom: 18px;
-	li {
-		list-style: none;
-		float: left;
-		a {
-			padding: 5px;
-		}
-		&:first-child a {
-			padding-left: 0;
-		}
-	}
+/* -------------------------------- 
+
+Main components 
+
+-------------------------------- */
+header {
+  position: relative;
+  height: 160px;
+  line-height: 160px;
+  text-align: center;
+}
+header h1 {
+  font-size: 22px;
+  font-size: 1.375rem;
+  color: #ffffff;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@media only screen and (min-width: 768px) {
+  header {
+    height: 6em;
+    line-height: 1.6;
+  }
+  header h1 {
+    font-size: 32px;
+    font-size: 2rem;
+  }
 }
 
-.container {
-	position: relative;
-	width: 100%;
-	margin: 50px 0;
-	.inner {
-		position: relative;
-		width: 100%;
-		max-width: $maxWidth;
-		margin: 0 auto;
-		overflow: hidden;
-		box-sizing: border-box;
-		padding: 20px 30px;
-		background-color: #EEE;
-	}
+.cd-image-container {
+  position: relative;
+  width: 90%;
+  max-width: 768px;
+  margin: 0em auto;
+}
+.cd-image-container img {
+  display: block;
 }
 
-.comparison-slider-wrapper {
-	position: relative;
-	width: 100%;
-	margin: 20px 0;
-	background-color: white;
-
-	.comparison-slider {
-		position: relative;
-		width: 100%;
-		margin: 0;
-		border: 5px white solid;
-		box-sizing: border-box;
-		> img {
-			width: 100%;
-			height: auto;
-			display: block;
-		}
-
-		.overlay {
-			display: none;
-			position: absolute;
-			width: 250px;
-			bottom: 20px;
-			right: 20px;
-			background-color: rgba(0, 0, 0, 0.4);
-			padding: 10px;
-			box-sizing: border-box;
-			color: #DDD;
-			text-align: right;
-			@include media('tabletUpwards') {
-				display: block;
-			}
-		}
-
-		.resize {
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: 100%;
-			width: 50%;
-			overflow: hidden;
-			> img {
-				display: block;
-			}
-			.overlay {
-				right: auto;
-				left: 20px;
-				text-align: left;
-			}
-		}
-
-		.divider {
-			position: absolute;
-			width: 2px;
-			height: 100%;
-			background-color: rgba(256, 256, 256, 0.2);
-			left: 50%;
-			top: 0;
-			bottom: 0;
-			margin-left: -1px;
-			cursor: ew-resize;
-			&:before {
-				content: "";
-				position: absolute;
-				width: 20px;
-				height: 20px;
-				left: -9px;
-				top: 50%;
-				margin-top: -10px;
-				background-color: white;
-				transform: rotate(45deg);
-				transition: all 0.1s ease-in-out;
-			}
-			&:after {
-				content: "";
-				position: absolute;
-				width: 12px;
-				height: 12px;
-				left: -5px;
-				top: 50%;
-				margin-top: -6px;
-				background-color: white;
-				transform: rotate(45deg);
-				transition: all 0.1s ease-in-out;
-			}
-			&.draggable{
-				&:before {
-					width: 30px;
-					height: 30px;
-					left: -14px;
-					margin-top: -15px;
-				}
-				&:after {
-					width: 20px;
-					height: 20px;
-					left: -9px;
-					margin-top: -10px;
-					background-color: #555;
-				}
-			}
-		}
-	}
-
-	.caption {
-		position: relative;
-		width: 100%;
-		padding: 10px;
-		box-sizing: border-box;
-		font-size: 12px;
-		font-style: italic;
-	}
+.cd-image-label {
+  position: absolute;
+  font-weight: 500;
+  letter-spacing: 1px;
+  top: 0;
+  right: 0;
+  color: #ffffff;
+  padding: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+  -moz-transform: translateY(20px);
+  -ms-transform: translateY(20px);
+  -o-transform: translateY(20px);
+  transform: translateY(20px);
+  -webkit-transition: -webkit-transform 0.3s 0.7s, opacity 0.3s 0.7s;
+  -moz-transition: -moz-transform 0.3s 0.7s, opacity 0.3s 0.7s;
+  transition: transform 0.3s 0.7s, opacity 0.3s 0.7s;
+}
+.cd-image-label.is-hidden {
+  visibility: hidden;
+}
+.is-visible .cd-image-label {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
 }
 
-.suppoprt-me {
-	display: inline-block;
-	position: fixed;
-	bottom: 10px;
-	left: 10px;
-	width: 20vw;
-	max-width: 250px;
-	min-width: 200px;
-	z-index: 9;
-	img {
-		width: 100%;
-		height: auto;
-	}
+.cd-resize-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  overflow: hidden;
+  /* Force Hardware Acceleration in WebKit */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.cd-resize-img img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+}
+.cd-resize-img .cd-image-label {
+  right: auto;
+  left: 0;
+}
+.is-visible .cd-resize-img {
+  width: 50%;
+  /* bounce in animation of the modified image */
+  -webkit-animation: cd-bounce-in 0.7s;
+  -moz-animation: cd-bounce-in 0.7s;
+  animation: cd-bounce-in 0.7s;
+}
+
+@-webkit-keyframes cd-bounce-in {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 55%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+@-moz-keyframes cd-bounce-in {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 55%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+@keyframes cd-bounce-in {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 55%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+.cd-handle {
+  position: absolute;
+  height: 44px;
+  width: 44px;
+  /* center the element */
+  left: 50%;
+  top: 50%;
+  margin-left: -22px;
+  margin-top: -22px;
+  border-radius: 50%;
+  background: #000000 url("https://images.clickfunnels.com/09/a714400d3211e7a0bd7d7140585054/cd-arrows.svg") no-repeat center center;
+  cursor: move;
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  -webkit-transform: translate3d(0, 0, 0) scale(0);
+  -moz-transform: translate3d(0, 0, 0) scale(0);
+  -ms-transform: translate3d(0, 0, 0) scale(0);
+  -o-transform: translate3d(0, 0, 0) scale(0);
+  transform: translate3d(0, 0, 0) scale(0);
+}
+.cd-handle.draggable {
+  /* change background color when element is active */
+  background-color: #445b7c;
+}
+.is-visible .cd-handle {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0) scale(1);
+  -moz-transform: translate3d(0, 0, 0) scale(1);
+  -ms-transform: translate3d(0, 0, 0) scale(1);
+  -o-transform: translate3d(0, 0, 0) scale(1);
+  transform: translate3d(0, 0, 0) scale(1);
+  -webkit-transition: -webkit-transform 0.3s 0.7s, opacity 0s 0.7s;
+  -moz-transition: -moz-transform 0.3s 0.7s, opacity 0s 0.7s;
+  transition: transform 0.3s 0.7s, opacity 0s 0.7s;
+}
+
+footer {
+  padding: 2rem;
+}
+
+footer p {
+  font-size: 90%;
+  font-weight: 300;
+  text-align: center;
 }
